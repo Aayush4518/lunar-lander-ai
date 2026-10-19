@@ -17,7 +17,8 @@ model = PPO(
 )
 
 # model.learn(total_timesteps= 100000)
-model.learn(total_timesteps= 500000)
+# model.learn(total_timesteps= 500000)
+model.learn(total_timesteps= 1_000_000)
 
 model.save("ppo_lander")
 

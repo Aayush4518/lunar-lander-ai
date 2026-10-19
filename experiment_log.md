@@ -39,4 +39,20 @@ Investigate reward shaping, reward hacking, and reward design.
 - Observations: Performance improved compared with the
   100,000-step model, but results remain inconsistent.
 
+## Experiment 3 — Baseline PPO (1,000,000 steps)
+
+- Algorithm: PPO
+- Environment: LunarLander-v3
+- Network: 2 hidden layers, 64 units each
+- Learning rate: 0.0003
+- Training steps: 1,000,000
+
+### Evaluation
+- Evaluation episodes: 5
+- Episode rewards: 186.94, 199.98, 171.75, -64.63, 253.69
+- Average evaluation reward: 149.55
+- Successful landings: Not verified
+- Observations: Major improvement over the 100k and
+  500k runs, but performance remains inconsistent.
+  One episode had a negative reward.
 
