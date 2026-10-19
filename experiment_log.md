@@ -1,11 +1,11 @@
 
-# Lunar Lander AI — Experiment Log
+# Lunar Lander AI - Experiment Log
 
 ## Project objective
 Train a PPO agent to land a spacecraft using Gymnasium LunarLander-v3.
 Investigate reward shaping, reward hacking, and reward design.
 
-## Experiment 1 — Baseline PPO (100,000 steps)
+## Experiment 1 - Baseline PPO (100,000 steps)
 
 - Algorithm: PPO
 - Environment: LunarLander-v3
@@ -21,7 +21,7 @@ Investigate reward shaping, reward hacking, and reward design.
 - Successful landings: 0/5
 - Observations: No successful landings in the five test episodes.
 
-## Experiment 2 — Baseline PPO (500,000 steps)
+## Experiment 2 - Baseline PPO (500,000 steps)
 
 - Algorithm: PPO
 - Environment: LunarLander-v3
@@ -39,7 +39,7 @@ Investigate reward shaping, reward hacking, and reward design.
 - Observations: Performance improved compared with the
   100,000-step model, but results remain inconsistent.
 
-## Experiment 3 — Baseline PPO (1,000,000 steps)
+## Experiment 3 - Baseline PPO (1,000,000 steps)
 
 - Algorithm: PPO
 - Environment: LunarLander-v3
@@ -58,7 +58,7 @@ Investigate reward shaping, reward hacking, and reward design.
 
 
 
-### Extended Evaluation — 20 Episodes
+### Extended Evaluation - 20 Episodes
 
 - Training steps: 1,000,000
 - Evaluation episodes: 20
@@ -74,3 +74,21 @@ has substantial performance variability. The average
 over 20 episodes is lower than the initial five-episode
 average, showing why larger evaluation samples matter.
 
+
+## Experiment 4: Broken Reward - Hovering Incentive
+
+**Training steps:** 500,000  
+**Evaluation episodes:** 5  
+**Evaluation environment:** Original `LunarLander-v3` reward
+
+| Metric | Result |
+|---|---:|
+| Average original reward | -23.47 |
+| Average upright/slow frames | 927 / 1,000 |
+| Average upright/slow percentage | 92.7% |
+
+**Observation:** The agent spent most of its episode satisfying the upright-and-slow condition, but its average original reward was negative. This suggests that the custom reward may have encouraged behavior that did not translate into effective landing performance.
+
+**Limitation:** Upright/slow frames are only a proxy for hovering. Successful landings and time-limit truncations were not explicitly counted, so the behavior requires further verification.
+
+**Conclusion:** Reward design matters. An agent can optimize a poorly designed incentive without achieving the intended objective.
