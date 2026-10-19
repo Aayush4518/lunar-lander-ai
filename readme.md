@@ -107,4 +107,4 @@ I also learned to evaluate models using the original environment reward instead 
 - Improve the reward design and test whether it can outperform the baseline.
 - Record a few successful landings and examples of the hovering behavior.
 
-This is a learning project, so the results aren't perfect. That's kind of the point — I wanted to see what happens, understand why it happens, and improve the experiment from there.
+This is a learning project, so the results aren't perfect. That's kind of the point I wanted to see what happens, understand why it happens and improve the experiment from there.
