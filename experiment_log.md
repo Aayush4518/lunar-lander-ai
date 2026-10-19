@@ -94,32 +94,38 @@ average, showing why larger evaluation samples matter.
 **Conclusion:** Reward design matters. An agent can optimize a poorly designed incentive without achieving the intended objective.
 
 
-## Experiment 5: Final Model Comparison
+## Experiment 5: Final Comparison
 
-**Evaluation episodes:** 20 per model  
-**Evaluation reward:** Original LunarLander-v3 reward  
-**Landing detection:** Approximate heuristic using leg contact, velocity, and angle
+**Evaluation:** 20 episodes per model  
+**Evaluation environment:** Original `LunarLander-v3`  
+**Metric:** Accumulated original environment reward
 
 | Metric | Baseline | Broken Reward | Fixed Reward |
 |---|---:|---:|---:|
-| Average reward | 97.41 | -12.27 | 160.84 |
-| Likely safe landings | 9/20 | 1/20 | 9/20 |
-| Timeouts | 1/20 | 18/20 | 1/20 |
+| Training steps | 1,000,000 | 500,000 | 500,000 |
+| Average reward | 155.24 | -29.80 | 145.60 |
+| Best reward | 255.32 | 222.90 | 266.20 |
+| Worst reward | -72.35 | -174.58 | -77.17 |
+| Successful landings | 17/20 | 1/20 | 14/20 |
+| Crashes | 3/20 | 2/20 | 6/20 |
+| Timeouts | 0/20 | 17/20 | 0/20 |
 
 ### Findings
 
-- The broken-reward model spent most of its time satisfying the upright-and-slow condition and timed out in 18 of 20 episodes.
-- The fixed-reward model achieved the highest average original reward and timed out in only one episode.
-- Both the baseline and fixed-reward models achieved 9 likely safe landings under the approximate landing detector.
-- The broken reward appears to have encouraged behavior inconsistent with the intended landing objective.
+- The broken-reward model timed out in 17 of 20 episodes, suggesting that its upright-and-slow bonus encouraged unproductive behavior.
+- The fixed-reward model landed successfully in 14 episodes and had no timeouts.
+- The baseline performed best in this evaluation, with 17 successful landings and an average reward of 155.24.
+- The fixed model achieved an average reward of 145.60, so the modified reward did not outperform the baseline in this sample.
 
 ### Conclusion
 
-The experiment demonstrates how a poorly chosen reward incentive can lead to undesirable behavior. Removing the hovering bonus and introducing a small time penalty was associated with substantially better performance under the original environment reward.
+The experiment illustrates reward hacking: an agent can optimize an incentive that does not align with the intended goal. Removing the hovering bonus and adding a small time penalty substantially improved behavior compared with the broken-reward model.
+
+However, the fixed reward did not outperform the baseline. Reward modifications should be evaluated empirically rather than assumed to improve performance.
 
 ### Limitations
 
-- Only 20 evaluation episodes were tested per model.
-- The landing detector is approximate and may misclassify some outcomes.
-- Each model was trained separately, so training randomness may affect the comparison.
-- More evaluation episodes and repeated training runs are needed for stronger conclusions.
+- Each model was evaluated on one sample of 20 episodes.
+- Models were trained separately, with potentially different training randomness.
+- The baseline received twice as many training steps as either experimental model.
+- More evaluation episodes and repeated training runs are needed for robust comparisons.
