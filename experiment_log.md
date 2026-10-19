@@ -56,3 +56,21 @@ Investigate reward shaping, reward hacking, and reward design.
   500k runs, but performance remains inconsistent.
   One episode had a negative reward.
 
+
+
+### Extended Evaluation — 20 Episodes
+
+- Training steps: 1,000,000
+- Evaluation episodes: 20
+- Average evaluation reward: 91.53
+- Best reward: 273.06
+- Worst reward: -154.82
+- Episodes scoring 200+: 7/20 (35%)
+- Verified successful landings: Not measured
+
+Observations:
+The agent achieves high rewards in several episodes but
+has substantial performance variability. The average
+over 20 episodes is lower than the initial five-episode
+average, showing why larger evaluation samples matter.
+
