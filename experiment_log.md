@@ -31,8 +31,12 @@ Investigate reward shaping, reward hacking, and reward design.
 - Mean training reward at end: Pending
 
 ### Evaluation
-- Evaluation episodes: Pending
-- Episode rewards: Pending
-- Average evaluation reward: Pending
-- Successful landings: Pending
-- Observations: Pending
+
+- Evaluation episodes: 5
+- Episode rewards: -111.29, 62.24, -57.83, 112.10, 57.82
+- Average evaluation reward: 12.61
+- Successful landings: Not verified
+- Observations: Performance improved compared with the
+  100,000-step model, but results remain inconsistent.
+
+
