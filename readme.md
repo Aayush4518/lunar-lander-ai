@@ -51,7 +51,7 @@ Interestingly, though, it still didn't beat the baseline. So the lesson wasn't t
 Clone the repository and install the dependencies:
 
 ```bash
-git clone <https://github.com/Aayush4518/lunar-lander-ai.git>
+git clone https://github.com/Aayush4518/lunar-lander-ai.git
 cd lunar-lander-ai
 
 python -m venv .venv
