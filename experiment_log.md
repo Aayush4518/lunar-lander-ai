@@ -92,3 +92,34 @@ average, showing why larger evaluation samples matter.
 **Limitation:** Upright/slow frames are only a proxy for hovering. Successful landings and time-limit truncations were not explicitly counted, so the behavior requires further verification.
 
 **Conclusion:** Reward design matters. An agent can optimize a poorly designed incentive without achieving the intended objective.
+
+
+## Experiment 5: Final Model Comparison
+
+**Evaluation episodes:** 20 per model  
+**Evaluation reward:** Original LunarLander-v3 reward  
+**Landing detection:** Approximate heuristic using leg contact, velocity, and angle
+
+| Metric | Baseline | Broken Reward | Fixed Reward |
+|---|---:|---:|---:|
+| Average reward | 97.41 | -12.27 | 160.84 |
+| Likely safe landings | 9/20 | 1/20 | 9/20 |
+| Timeouts | 1/20 | 18/20 | 1/20 |
+
+### Findings
+
+- The broken-reward model spent most of its time satisfying the upright-and-slow condition and timed out in 18 of 20 episodes.
+- The fixed-reward model achieved the highest average original reward and timed out in only one episode.
+- Both the baseline and fixed-reward models achieved 9 likely safe landings under the approximate landing detector.
+- The broken reward appears to have encouraged behavior inconsistent with the intended landing objective.
+
+### Conclusion
+
+The experiment demonstrates how a poorly chosen reward incentive can lead to undesirable behavior. Removing the hovering bonus and introducing a small time penalty was associated with substantially better performance under the original environment reward.
+
+### Limitations
+
+- Only 20 evaluation episodes were tested per model.
+- The landing detector is approximate and may misclassify some outcomes.
+- Each model was trained separately, so training randomness may affect the comparison.
+- More evaluation episodes and repeated training runs are needed for stronger conclusions.
